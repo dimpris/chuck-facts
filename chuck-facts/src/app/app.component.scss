@@ -63,5 +63,12 @@
             padding: $free-space-size;
             background-color: $light-orange;
         }
+
+        .search-result {
+            &__row {
+                display: flex;
+                margin: $free-space-size;
+            }
+        }
     }
 }

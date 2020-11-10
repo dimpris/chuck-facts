@@ -6,19 +6,27 @@
   </header>
   <section>
     <div class="switch-buttons">
-      <button class="active">Random</button>
-      <button>Search</button>
+      <button (click)="RandomClicked()" [class.active]="isRandom">Random</button>
+      <button (click)="SearchClicked()" [class.active]="!isRandom">Search</button>
     </div>
-    <form class="search-form">
+    <div class="search-form">
       <label>Your name</label> 
-      <input name="username"> 
+      <input (change)="inputChangeHandler($event)"> 
       <label>Category</label> 
-      <select>
+      <select (change)="selectChangeHandler($event)">
         <option></option>
-        <option value="1">Category</option>
+        <option *ngFor="let category of categories" value="{{category}}">{{category| titlecase}}</option>
       </select> 
-      <button>GO!</button>
-    </form>
+      <button (click)="Search()">GO!</button>
+    </div>
+    <div class="search-result" *ngIf="answers.length">
+      <div class="search-result__row" *ngFor="let answer of answers">
+        <div  class="search-result__row-icon">
+          <img src="{{answer.icon_url}}" alt="chuck"/>
+        </div>
+        <div>{{answer.value}}</div>
+      </div>
+    </div>
   </section>
 </div>
 <router-outlet></router-outlet>
