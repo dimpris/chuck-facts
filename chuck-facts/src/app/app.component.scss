@@ -1,0 +1,67 @@
+.chuckapp {
+    $orange: #F15A24;
+    $light-orange: #FFF2EE;
+    $white: #fff;
+    $free-space-size: 15px;
+
+    header {
+        overflow: hidden;
+        height: 256px;
+        background-image: url(../assets/images/Oklahoma-Panhandle-Landscape.jpg);
+        background-size: cover;
+        margin-bottom: 100px;
+
+        figure {
+            position: absolute;
+            top: 166px;
+            left: 50%;
+            background-color: $white;
+            width: 150px;
+            height: 150px;
+            box-sizing: border-box;
+            padding: $free-space-size;
+            border-radius: 50%;
+            margin-left: -75px;
+            box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+
+            img {
+                max-width: 100%;
+                margin-top: $free-space-size;
+            }
+        }
+        
+    }
+
+    section {
+        width: 560px; /* TODO enlarge */
+        margin: 0 auto;
+
+        .switch-buttons {
+            text-align: center;
+
+            button {
+                background: none;
+                border: 1px $orange solid;
+                color: $orange;
+                padding: $free-space-size;
+
+                &.active {
+                    background-color: $orange;
+                    color: $white;
+                }
+            }
+        }
+
+        .search-form > * {
+            display: block;
+        }
+
+        .search-form {
+            display: flex;
+            justify-content: space-between;
+            margin-top: $free-space-size;
+            padding: $free-space-size;
+            background-color: $light-orange;
+        }
+    }
+}
