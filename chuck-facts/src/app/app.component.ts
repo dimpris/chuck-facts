@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { NgRedux, select } from '@angular-redux/store';
+import { InitialState } from './store/reducer';
+import { ApiService } from './services/api.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -13,12 +17,25 @@ export class AppComponent {
   username = '';
   answers: any[] = [];
 
-  constructor() {
-    
+  constructor(
+    private ngRedux: NgRedux<InitialState>,
+    private apiService: ApiService
+  ) {
+    this.ngRedux
+      .select<Array<string>>('categories')
+      .subscribe((items: Array<string>) => {
+        this.categories = items;
+      });
+    this.ngRedux
+      .select<Array<string>>('answer')
+      .subscribe((items: Array<any>) => {
+        this.answers = items;
+      });
   }
 
+
   ngOnInit() {
-    
+    this.apiService.getCategories();
   }
 
   public RandomClicked() {
@@ -30,7 +47,11 @@ export class AppComponent {
   }
 
   public Search() {
-    
+    if (!this.isRandom) {
+      this.apiService.searchFact(this.username);
+    } else {
+      this.apiService.getRandomFact(this.username, this.selectedCategory)
+    }
   }
 
   

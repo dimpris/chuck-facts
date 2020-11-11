@@ -11,9 +11,9 @@
     </div>
     <div class="search-form">
       <label>Your name</label> 
-      <input> 
+      <input [(ngModel)]="username"> 
       <label>Category</label> 
-      <select>
+      <select [(ngModel)]="selectedCategory">
         <option></option>
         <option *ngFor="let category of categories" value="{{category}}">{{category| titlecase}}</option>
       </select> 
