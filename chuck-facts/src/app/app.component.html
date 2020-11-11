@@ -11,9 +11,9 @@
     </div>
     <div class="search-form">
       <label>Your name</label> 
-      <input (change)="inputChangeHandler($event)"> 
+      <input> 
       <label>Category</label> 
-      <select (change)="selectChangeHandler($event)">
+      <select>
         <option></option>
         <option *ngFor="let category of categories" value="{{category}}">{{category| titlecase}}</option>
       </select> 
