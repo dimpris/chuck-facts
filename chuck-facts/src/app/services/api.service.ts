@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { NgRedux } from '@angular-redux/store';
-import { InitialState } from '../store/reducer';
+import { InitialState, Fact } from '../store/reducer';
 import { GetCategories, GetRandomFact, Search } from '../store/actions';
 
 
@@ -36,9 +36,9 @@ export class ApiService {
     this.http
       .get(this.baseUrl + 'search', {params: params})
       .subscribe((data: any) => {
-        let result = data.result as Array<any>;
-        result = result.sort((a, b) => a.created_at - b.created_at);
-        this.ngRedux.dispatch(Search(data.result));
+        let result = data.result as Array<Fact>;
+        result = result.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+        this.ngRedux.dispatch(Search(result));
       });
   }
 
@@ -55,7 +55,7 @@ export class ApiService {
 
     this.http
       .get(this.baseUrl + 'random', {params: params})
-      .subscribe((data: any) => {
+      .subscribe((data: Fact) => {
         this.ngRedux.dispatch(GetRandomFact([data]));
       });
   }

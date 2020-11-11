@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgRedux, select } from '@angular-redux/store';
-import { InitialState } from './store/reducer';
+import { InitialState, Fact } from './store/reducer';
 import { ApiService } from './services/api.service';
 import { Observable } from 'rxjs';
 
@@ -15,7 +15,7 @@ export class AppComponent {
   isRandom = true;
   selectedCategory: string;
   username = '';
-  answers: any[] = [];
+  answers: Fact[] = [];
 
   constructor(
     private ngRedux: NgRedux<InitialState>,
@@ -27,8 +27,8 @@ export class AppComponent {
         this.categories = items;
       });
     this.ngRedux
-      .select<Array<string>>('answer')
-      .subscribe((items: Array<any>) => {
+      .select<Array<Fact>>('answer')
+      .subscribe((items: Array<Fact>) => {
         this.answers = items;
       });
   }
@@ -36,14 +36,6 @@ export class AppComponent {
 
   ngOnInit() {
     this.apiService.getCategories();
-  }
-
-  public RandomClicked() {
-    this.isRandom = true;
-  }
-  
-  public SearchClicked() {
-    this.isRandom = false;
   }
 
   public Search() {

@@ -1,8 +1,14 @@
 import { ActionTypes } from './actions';
+
+export interface Fact {
+    icon_url: string;
+    value: string;
+    created_at: string;
+}
     
 export interface InitialState {
     categories: Array<string>;
-    answer: Array<any>;
+    answer: Array<Fact>;
 }
 export const initialState = {
     categories: [],

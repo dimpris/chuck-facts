@@ -6,14 +6,15 @@
   </header>
   <section>
     <div class="switch-buttons">
-      <button (click)="RandomClicked()" [class.active]="isRandom">Random</button>
-      <button (click)="SearchClicked()" [class.active]="!isRandom">Search</button>
+      <button (click)="isRandom=true" [class.active]="isRandom">Random</button>
+      <button (click)="isRandom=false" [class.active]="!isRandom">Search</button>
     </div>
     <div class="search-form">
-      <label>Your name</label> 
+      <label [class.hidden]="!isRandom">Your name: </label> 
+      <label [class.hidden]="isRandom">Query: </label> 
       <input [(ngModel)]="username"> 
-      <label>Category</label> 
-      <select [(ngModel)]="selectedCategory">
+      <label [class.hidden]="!isRandom">Category: </label> 
+      <select [(ngModel)]="selectedCategory" [class.hidden]="!isRandom">
         <option></option>
         <option *ngFor="let category of categories" value="{{category}}">{{category| titlecase}}</option>
       </select> 

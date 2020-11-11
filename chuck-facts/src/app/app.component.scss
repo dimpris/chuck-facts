@@ -33,7 +33,7 @@
     }
 
     section {
-        width: 960px;
+        width: 600px;
         margin: 0 auto;
 
         .switch-buttons {
@@ -50,10 +50,6 @@
                     color: $white;
                 }
             }
-        }
-
-        .search-form > * {
-            display: block;
         }
 
         .search-form {
