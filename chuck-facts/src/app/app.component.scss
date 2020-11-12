@@ -33,7 +33,7 @@
     }
 
     section {
-        width: 600px;
+        width: 650px;
         margin: 0 auto;
 
         .switch-buttons {
@@ -55,9 +55,15 @@
         .search-form {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             margin-top: $free-space-size;
             padding: $free-space-size;
             background-color: $light-orange;
+
+            ng-multiselect-dropdown {
+                width: 150px;
+                margin-right: $free-space-size;
+            }
         }
 
         .search-result {

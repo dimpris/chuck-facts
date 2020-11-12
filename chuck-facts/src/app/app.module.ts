@@ -5,8 +5,16 @@ import { NgReduxModule, NgRedux } from '@angular-redux/store';
 import { FactsReducer, InitialState, initialState } from './store/reducer';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import { AppComponent } from './app.component';
+
+declare module "@angular/core" {
+  interface ModuleWithProviders<T = any> {
+      ngModule: Type<T>;
+      providers?: Provider[];
+  }
+}
 
 @NgModule({
   declarations: [
@@ -17,7 +25,8 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgReduxModule
+    NgReduxModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

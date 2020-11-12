@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NgRedux, select } from '@angular-redux/store';
 import { InitialState, Fact } from './store/reducer';
 import { ApiService } from './services/api.service';
-import { Observable } from 'rxjs';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 @Component({
   selector: 'app-root',
@@ -12,8 +12,9 @@ import { Observable } from 'rxjs';
 export class AppComponent {
   title = 'chuck-facts';
   categories: string[] = [];
+  selectedItems = [];
+  dropdownSettings: IDropdownSettings = {};
   isRandom = true;
-  selectedCategory: string;
   username = '';
   answers: Fact[] = [];
 
@@ -36,13 +37,19 @@ export class AppComponent {
 
   ngOnInit() {
     this.apiService.getCategories();
+
+    this.dropdownSettings = {
+      singleSelection: false,
+      allowSearchFilter: false,
+      enableCheckAll: false,
+    };
   }
 
   public Search() {
     if (!this.isRandom) {
       this.apiService.searchFact(this.username);
     } else {
-      this.apiService.getRandomFact(this.username, this.selectedCategory)
+      this.apiService.getRandomFact(this.username, this.selectedItems.toString())
     }
   }
 
